@@ -5,5 +5,6 @@ public class FibonacciHeapMain {
         fibHeap.insert(2, "2");
         fibHeap.insert(3, "3");
         fibHeap.printHeap();
+        System.out.println("Min: " + fibHeap.findMin());
     }
 }

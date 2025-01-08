@@ -41,8 +41,7 @@ public class FibonacciHeap {
 			node.next = node;
 			this.min = node;
 			this.rootsListHead = node;
-		}
-		else {
+		} else {
 			node.next = this.rootsListHead;
 			node.prev = this.rootsListHead.prev;
 			this.rootsListHead.prev.next = node;
@@ -76,7 +75,6 @@ public class FibonacciHeap {
 	 */
 	public void deleteMin() {
 		return; // should be replaced by student code
-
 	}
 
 	/**
@@ -148,13 +146,43 @@ public class FibonacciHeap {
 		return this.numTrees; // should be replaced by student code
 	}
 
+	private void cut(HeapNode node) {
+		HeapNode parent = node.parent;
+		node.parent = null;
+		node.mark = false;
+		parent.rank -= 1;
+
+		if (node.next == node) {
+			parent.child = null;
+		} else {
+			parent.child = node.next;
+			node.prev.next = node.next;
+			node.next.prev = node.prev;
+		}
+
+		this.totalCuts++;
+	}
+
+	private void cascadingCut(HeapNode node) {
+		HeapNode parent = node.parent;
+		this.cut(node);
+
+		if (parent.parent != null) {
+			if (!parent.mark) {
+				parent.mark = true;
+			} else {
+				this.cascadingCut(parent);
+			}
+		}
+	}
+
 	// ######################## DELETE THIS ########################
 	public void printHeap() {
 		if (min == null) {
 			System.out.println("The heap is empty.");
 			return;
 		}
-		System.out.println("Fibonacci Heap (tree structure):");
+		System.out.println("Fibonacci Heap:");
 
 		HeapNode start = min;
 		HeapNode current = min;
@@ -162,13 +190,13 @@ public class FibonacciHeap {
 
 		do {
 			System.out.println("Tree " + treeNumber + ":");
-			printTreeStructured(current, "", true);
+			printTree(current, "", true);
 			current = current.next;
 			treeNumber++;
 		} while (current != start);
 	}
 
-	private void printTreeStructured(HeapNode node, String prefix, boolean isLast) {
+	private void printTree(HeapNode node, String prefix, boolean isLast) {
 		if (node == null) return;
 
 		// Print the current node as (key, "value")
@@ -183,7 +211,7 @@ public class FibonacciHeap {
 		if (node.child != null) {
 			HeapNode child = node.child;
 			do {
-				printTreeStructured(child, prefix, child.next == node.child);
+				printTree(child, prefix, child.next == node.child);
 				child = child.next;
 			} while (child != node.child);
 		}
@@ -214,6 +242,10 @@ public class FibonacciHeap {
 			this.parent = null;
 			this.rank = 0;
 			this.mark = false;
+		}
+
+		public String toString() {
+			return "(" + this.key + ", \"" + this.info + "\")";
 		}
 	}
 }
