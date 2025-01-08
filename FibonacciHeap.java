@@ -146,6 +146,20 @@ public class FibonacciHeap {
 		return this.numTrees; // should be replaced by student code
 	}
 
+	public HeapNode link(HeapNode node1, HeapNode node2) {
+		HeapNode parent, child;
+
+		if (node1.key <= node2.key) {
+			parent = node1;
+			child = node2;
+		} else {
+			parent = node2;
+			child = node1;
+		}
+		parent.addChild(child);
+		return parent;
+	}
+
 	private void cut(HeapNode node) {
 		HeapNode parent = node.parent;
 		node.parent = null;
@@ -184,8 +198,8 @@ public class FibonacciHeap {
 		}
 		System.out.println("Fibonacci Heap:");
 
-		HeapNode start = min;
-		HeapNode current = min;
+		HeapNode start = this.rootsListHead;
+		HeapNode current = this.rootsListHead;
 		int treeNumber = 1;
 
 		do {
@@ -246,6 +260,24 @@ public class FibonacciHeap {
 
 		public String toString() {
 			return "(" + this.key + ", \"" + this.info + "\")";
+		}
+
+		private void addChild(HeapNode newChild) {
+			newChild.parent = this;
+
+			if (this.child == null) {
+				this.child = newChild;
+				newChild.next = newChild;
+				newChild.prev = newChild;
+			} else {
+				newChild.next = this.child;
+				newChild.prev = this.child.prev;
+				this.child.prev.next = newChild;
+				this.child.prev = newChild;
+				this.child = newChild;
+			}
+
+			this.rank++;
 		}
 	}
 }
