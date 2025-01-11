@@ -124,7 +124,20 @@ public class FibonacciHeap {
 	 *
 	 */
 	public void meld(FibonacciHeap heap2) {
-		return; // should be replaced by student code   		
+		HeapNode rootsListLast = this.rootsListHead.prev;
+		rootsListLast.next.prev = heap2.rootsListHead.prev;
+		heap2.rootsListHead.prev.next = rootsListLast.next;
+		rootsListLast.next = heap2.rootsListHead;
+		heap2.rootsListHead.prev = rootsListLast;
+
+		if (heap2.min.key < this.min.key) {
+			this.min = heap2.min;
+		}
+
+		this.totalLinks += heap2.totalLinks();
+		this.totalCuts += heap2.totalCuts();
+		this.size += heap2.size();
+		this.numTrees += heap2.numTrees();
 	}
 
 	/**
