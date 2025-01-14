@@ -78,27 +78,34 @@ public class FibonacciHeap {
 	public void deleteMin() {
 		if (this.min.child == null && this.min.next == this.min) {
 			this.min = null;
+			this.rootsListHead = null;
+			this.size--;
+			this.numTrees--;
+		} else if (this.min.next == this.min) {
+
 		} else {
-			FibonacciHeap minChildren = new FibonacciHeap();
-			minChildren.rootsListHead = this.min.child;
-			minChildren.min = minChildren.rootsListHead;
-			HeapNode currChild = minChildren.rootsListHead;
-
-			for (int i = 0; i < this.min.rank; i++) {
-				currChild.parent = null;
-			}
-
 			this.min.next.prev = this.min.prev;
 			this.min.prev.next = this.min.next;
 
-			this.meld(minChildren);
+			this.numTrees--;
+
+			if (this.min.child != null) {
+				FibonacciHeap minChildren = new FibonacciHeap();
+				minChildren.rootsListHead = this.min.child;
+				minChildren.min = minChildren.rootsListHead;
+				HeapNode currChild = minChildren.rootsListHead;
+
+				for (int i = 0; i < this.min.rank; i++) {
+					currChild.parent = null;
+				}
+				this.meld(minChildren);
+			}
 
 			if (this.shouldConsolidate) {
 				this.successiveLinking();
 			}
-
-			this.size--;
 		}
+		this.size--;
 	}
 
 	/**
@@ -128,12 +135,21 @@ public class FibonacciHeap {
 	 */
 	public void delete(HeapNode x) {
 		HeapNode heapMin = this.min;
-		this.shouldConsolidate = false;
+		HeapNode rootsHead = this.rootsListHead;
+
+		if (this.rootsListHead == x && x.next != x) {
+			 rootsHead = x.next;
+		}
+
+		if (this.rootsListHead != x || this.min != x) {
+			this.shouldConsolidate = false;
+		}
 
 		this.decreaseKey(x, x.key);
 		this.deleteMin();
 
 		this.min = heapMin;
+		this.rootsListHead = rootsHead;
 		this.shouldConsolidate = true;
 	}
 
@@ -164,20 +180,36 @@ public class FibonacciHeap {
 	 *
 	 */
 	public void meld(FibonacciHeap heap2) {
-		HeapNode rootsListLast = this.rootsListHead.prev;
-		rootsListLast.next.prev = heap2.rootsListHead.prev;
-		heap2.rootsListHead.prev.next = rootsListLast.next;
-		rootsListLast.next = heap2.rootsListHead;
-		heap2.rootsListHead.prev = rootsListLast;
-
-		if (heap2.min.key < this.min.key) {
+		if (this == null) {
 			this.min = heap2.min;
+			this.rootsListHead = heap2.rootsListHead;
+			this.totalLinks = heap2.totalLinks;
+			this.totalCuts = heap2.totalCuts;
+			this.size = heap2.size;
+			this.numTrees = heap2.numTrees;
+			this.shouldConsolidate = heap2.shouldConsolidate;
 		}
+		if (heap2 != null && this.rootsListHead == null) {
+			this.rootsListHead = heap2.rootsListHead;
+			this.min = heap2.min;
+		} else if (this != null && heap2 != null && heap2.rootsListHead == null) {
+			return;
+		} else {
+			HeapNode rootsListLast = this.rootsListHead.prev;
+			rootsListLast.next.prev = heap2.rootsListHead.prev;
+			heap2.rootsListHead.prev.next = rootsListLast.next;
+			rootsListLast.next = heap2.rootsListHead;
+			heap2.rootsListHead.prev = rootsListLast;
 
-		this.totalLinks += heap2.totalLinks();
-		this.totalCuts += heap2.totalCuts();
-		this.size += heap2.size();
-		this.numTrees += heap2.numTrees();
+			if (heap2.min.key < this.min.key) {
+				this.min = heap2.min;
+			}
+
+			this.totalLinks += heap2.totalLinks();
+			this.totalCuts += heap2.totalCuts();
+			this.size += heap2.size();
+			this.numTrees += heap2.numTrees();
+		}
 	}
 
 	/**
@@ -235,6 +267,10 @@ public class FibonacciHeap {
 		this.rootsListHead.prev = node;
 		this.rootsListHead = node;
 
+		if (node.key < this.min.key) {
+			this.min = node;
+		}
+
 		this.numTrees++;
 		this.totalCuts++;
 	}
@@ -279,6 +315,8 @@ public class FibonacciHeap {
 				continue;
 			}
 
+			this.numTrees++;
+
 			if (min == null || root.key < min.key) {
 				min = root;
 			}
@@ -294,7 +332,6 @@ public class FibonacciHeap {
 			root.prev = lastRoot;
 			lastRoot.next = root;
 			lastRoot = root;
-			this.numTrees++;
 		}
 		lastRoot.next = firstRoot;
 		firstRoot.prev = lastRoot;
