@@ -131,15 +131,16 @@ public class FibonacciHeap {
 	 * 
 	 */
 	public void decreaseKey(HeapNode x, int diff) {
-		x.key -= diff;
+		if (x != null) {
+			x.key -= diff;
 
-		if (x.parent == null) {
-			if (x.key < this.min.key) {
-				this.min = x;
+			if (x.parent == null) {
+				if (x.key < this.min.key) {
+					this.min = x;
+				}
+			} else if (x.key < x.parent.key) {
+				this.cascadingCut(x);
 			}
-		}
-		else if (x.key < x.parent.key){
-			this.cascadingCut(x);
 		}
 	}
 
@@ -149,23 +150,25 @@ public class FibonacciHeap {
 	 *
 	 */
 	public void delete(HeapNode x) {
-		HeapNode heapMin = this.min;
-		HeapNode rootsHead = this.rootsListHead;
+		if (x != null) {
+			HeapNode heapMin = this.min;
+			HeapNode rootsHead = this.rootsListHead;
 
-		if (this.rootsListHead == x && x.next != x) {
-			 rootsHead = x.next;
+			if (this.rootsListHead == x && x.next != x) {
+				rootsHead = x.next;
+			}
+
+			if (this.rootsListHead != x || this.min != x) { // this.rootsListHead != x  why?
+				this.shouldConsolidate = false;
+			}
+
+			this.decreaseKey(x, x.key);
+			this.deleteMin();
+
+			this.min = heapMin;
+			this.rootsListHead = rootsHead;
+			this.shouldConsolidate = true;
 		}
-
-		if (this.rootsListHead != x || this.min != x) {
-			this.shouldConsolidate = false;
-		}
-
-		this.decreaseKey(x, x.key);
-		this.deleteMin();
-
-		this.min = heapMin;
-		this.rootsListHead = rootsHead;
-		this.shouldConsolidate = true;
 	}
 
 
