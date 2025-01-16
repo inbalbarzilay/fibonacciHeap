@@ -58,7 +58,7 @@ public class FibonacciHeap {
 		this.size++;
 		this.numTrees++;
 
-		return node; // should be replaced by student code
+		return node;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class FibonacciHeap {
 	 *
 	 */
 	public HeapNode findMin() {
-		return this.min; // should be replaced by student code
+		return this.min;
 	}
 
 	/**
@@ -79,17 +79,25 @@ public class FibonacciHeap {
 		if ((this.min == null) || (this.min.child == null && this.min.next == this.min)) {
 			this.min = null;
 			this.rootsListHead = null;
-			this.size--;
-			this.numTrees--;
+			this.size = 0;
+			this.numTrees = 0;
 		} else {
 			if (this.min.next != this.min) {
+				if (this.rootsListHead == this.min) {
+					this.rootsListHead = this.min.next;
+				}
+
 				this.min.next.prev = this.min.prev;
 				this.min.prev.next = this.min.next;
 			}
 			
-			this.numTrees--;
+			this.numTrees += min.rank - 1;
 
 			if (this.min.child != null) {
+				if (this.min.next == this.min) {
+					this.rootsListHead = this.min.child;
+				}
+
 				FibonacciHeap minChildren = new FibonacciHeap();
 				minChildren.rootsListHead = this.min.child;
 				minChildren.min = minChildren.rootsListHead;
@@ -97,6 +105,13 @@ public class FibonacciHeap {
 
 				for (int i = 0; i < this.min.rank; i++) {
 					currChild.parent = null;
+
+					if (currChild.key < minChildren.min.key) {
+						minChildren.min = currChild;
+					}
+
+					currChild = currChild.next;
+					this.totalCuts++;
 				}
 				this.meld(minChildren);
 			}
@@ -104,8 +119,8 @@ public class FibonacciHeap {
 			if (this.shouldConsolidate) {
 				this.successiveLinking();
 			}
+			this.size--;
 		}
-		this.size--;
 	}
 
 	/**

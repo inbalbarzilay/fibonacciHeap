@@ -9,16 +9,20 @@ public class FibonacciHeapMain {
         fibHeap.insert(42, "42");
         fibHeap.printHeap();
 
-//        FibonacciHeap fibHeap2 = new FibonacciHeap();
-//        fibHeap2.insert(5, "5");
-//        fibHeap2.insert(6, "6");
-//        fibHeap2.insert(1, "1");
-//        fibHeap2.printHeap();
-//
-//        fibHeap.meld(fibHeap2);
-
         fibHeap.deleteMin();
         fibHeap.delete(node);
+
+        FibonacciHeap fibHeap2 = new FibonacciHeap();
+        fibHeap2.insert(5, "5");
+        node = fibHeap2.insert(6, "6");
+        fibHeap2.insert(1, "1");
+        fibHeap2.printHeap();
+
+        fibHeap.meld(fibHeap2);
+        fibHeap.deleteMin();
+        fibHeap.deleteMin();
+
+        fibHeap.decreaseKey(node, 4);
 
         fibHeap.printHeap();
         System.out.println("Min: " + fibHeap.findMin());
