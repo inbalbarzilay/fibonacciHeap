@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3b03e44-4d7e-4a83-9d51-0779a4a2d31a" name="Changes" comment="" />
+    <list default="true" id="e3b03e44-4d7e-4a83-9d51-0779a4a2d31a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Experiment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FibonacciHeapTest2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/proj2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proj2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FibonacciHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FibonacciHeapMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeapMain.java" afterDir="false" />
+    </list>
+    <list id="34eb055f-6565-4a76-ac4c-8d5f09d9fe41" name="Changes by sharo" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +38,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Experiment.executor": "Run",
     "Application.FibonacciHeapMain.executor": "Run",
+    "Application.FibonacciHeapTest.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.FibonacciHeapTest3.executor": "Run",
+    "JUnit.Unnamed.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -41,6 +57,18 @@
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="proj2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FibonacciHeapTest2" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

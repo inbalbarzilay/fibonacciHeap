@@ -3,6 +3,11 @@
  *
  * An implementation of Fibonacci heap over positive integers.
  *
+ * user1 - inbalb4
+ * id1 - 212321202
+ * user2 - shwartzman1
+ * id2 - 206479081
+ *
  */
 public class FibonacciHeap {
 	public HeapNode min;
@@ -16,6 +21,7 @@ public class FibonacciHeap {
 	/**
 	 *
 	 * Constructor to initialize an empty heap.
+	 * Complexity: O(1)
 	 *
 	 */
 	public FibonacciHeap() {
@@ -33,6 +39,7 @@ public class FibonacciHeap {
 	 * pre: key > 0
 	 *
 	 * Insert (key,info) into the heap and return the newly generated HeapNode.
+	 * Complexity: O(1)
 	 *
 	 */
 	public HeapNode insert(int key, String info) {
@@ -64,6 +71,7 @@ public class FibonacciHeap {
 	/**
 	 * 
 	 * Return the minimal HeapNode, null if empty.
+	 * Complexity: O(1)
 	 *
 	 */
 	public HeapNode findMin() {
@@ -73,6 +81,7 @@ public class FibonacciHeap {
 	/**
 	 * 
 	 * Delete the minimal item
+	 * Complexity: O(log n) amortized
 	 *
 	 */
 	public void deleteMin() {
@@ -127,7 +136,8 @@ public class FibonacciHeap {
 	 * 
 	 * pre: 0<diff<x.key
 	 * 
-	 * Decrease the key of x by diff and fix the heap. 
+	 * Decrease the key of x by diff and fix the heap.
+	 * Complexity: O(1) amortized
 	 * 
 	 */
 	public void decreaseKey(HeapNode x, int diff) {
@@ -147,25 +157,29 @@ public class FibonacciHeap {
 	/**
 	 * 
 	 * Delete the x from the heap.
+	 * Complexity: O(log n) amortized
 	 *
 	 */
 	public void delete(HeapNode x) {
 		if (x != null) {
 			HeapNode heapMin = this.min;
 			HeapNode rootsHead = this.rootsListHead;
+			boolean isMin = (x == this.min);
 
 			if (this.rootsListHead == x && x.next != x) {
 				rootsHead = x.next;
 			}
 
-			if (this.rootsListHead != x || this.min != x) { // this.rootsListHead != x  why?
+			if (this.min != x) {
 				this.shouldConsolidate = false;
 			}
 
 			this.decreaseKey(x, x.key);
 			this.deleteMin();
 
-			this.min = heapMin;
+			if (!isMin) {
+				this.min = heapMin;
+			}
 			this.rootsListHead = rootsHead;
 			this.shouldConsolidate = true;
 		}
@@ -175,6 +189,7 @@ public class FibonacciHeap {
 	/**
 	 * 
 	 * Return the total number of links.
+	 * Complexity - O(1)
 	 * 
 	 */
 	public int totalLinks() {
@@ -185,6 +200,7 @@ public class FibonacciHeap {
 	/**
 	 * 
 	 * Return the total number of cuts.
+	 * Complexity - O(1)
 	 * 
 	 */
 	public int totalCuts() {
@@ -195,6 +211,7 @@ public class FibonacciHeap {
 	/**
 	 * 
 	 * Meld the heap with heap2
+	 * Complexity - O(1)
 	 *
 	 */
 	public void meld(FibonacciHeap heap2) {
@@ -207,6 +224,7 @@ public class FibonacciHeap {
 			this.numTrees = heap2.numTrees;
 			this.shouldConsolidate = heap2.shouldConsolidate;
 		} else if (heap2 != null && heap2.rootsListHead != null) {
+			// Concat roots lists
 			HeapNode rootsListLast = this.rootsListHead.prev;
 			rootsListLast.next.prev = heap2.rootsListHead.prev;
 			heap2.rootsListHead.prev.next = rootsListLast.next;
@@ -226,7 +244,8 @@ public class FibonacciHeap {
 
 	/**
 	 * 
-	 * Return the number of elements in the heap
+	 * Return the number of elements in the heap.
+	 * Complexity - O(1)
 	 *   
 	 */
 	public int size() {
@@ -237,12 +256,19 @@ public class FibonacciHeap {
 	/**
 	 * 
 	 * Return the number of trees in the heap.
+	 * Complexity - O(1)
 	 * 
 	 */
 	public int numTrees() {
 		return this.numTrees; // should be replaced by student code
 	}
 
+	/**
+	 *
+	 * Link two trees with the same rank.
+	 * Complexity - O(1)
+	 *
+	 */
 	private HeapNode link(HeapNode node1, HeapNode node2) {
 		HeapNode parent, child;
 
@@ -259,6 +285,12 @@ public class FibonacciHeap {
 		return parent;
 	}
 
+	/**
+	 *
+	 * Cut a node from its parent.
+	 * Complexity - O(1)
+	 *
+	 */
 	private void cut(HeapNode node) {
 		HeapNode parent = node.parent;
 		node.parent = null;
@@ -287,6 +319,12 @@ public class FibonacciHeap {
 		this.totalCuts++;
 	}
 
+	/**
+	 *
+	 * Recursively cut a node from its parent while the parent is not marked.
+	 * Complexity - O(1) amortized
+	 *
+	 */
 	private void cascadingCut(HeapNode node) {
 		HeapNode parent = node.parent;
 		this.cut(node);
@@ -300,6 +338,12 @@ public class FibonacciHeap {
 		}
 	}
 
+	/**
+	 *
+	 * Link trees of the same rank until all trees are of different ranks.
+	 * Complexity - O(log n) amortized
+	 *
+	 */
 	private void successiveLinking() {
 		HeapNode[] roots = new HeapNode[this.size + 1];
 		HeapNode currRoot = this.rootsListHead;
@@ -409,6 +453,12 @@ public class FibonacciHeap {
 		public int rank;
 		public boolean mark;
 
+		/**
+		 *
+		 * Constructor to initialize a heap node.
+		 * Complexity: O(1)
+		 *
+		 */
 		public HeapNode(int key, String info) {
 			this.key = key;
 			this.info = info;
@@ -426,6 +476,12 @@ public class FibonacciHeap {
 		}
 		// ######################## DELETE THIS ########################
 
+		/**
+		 *
+		 * Add a node to the heap node's children list.
+		 * Complexity: O(1)
+		 *
+		 */
 		private void addChild(HeapNode newChild) {
 			newChild.parent = this;
 
