@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class FibonacciHeapMain {
     public static void main(String[] args) {
 //        FibonacciHeap fibHeap = new FibonacciHeap();
@@ -31,14 +33,23 @@ public class FibonacciHeapMain {
 //        System.out.println("Total Links: " + fibHeap.totalLinks());
 //        System.out.println("Total Cuts: " + fibHeap.totalCuts());
 
-        FibonacciHeap heap = new FibonacciHeap();
-        FibonacciHeap.HeapNode parent = heap.insert(10, "Parent");
-        FibonacciHeap.HeapNode child = heap.insert(15, "Child");
-        heap.insert(1, "Min");
-        heap.deleteMin();
+//
 
-//        parent.addChild(child);
-        heap.decreaseKey(child, 10);
+        FibonacciHeap heap = new FibonacciHeap();
+
+        for (int i = 1; i <= 10; i++) {
+            heap.insert(i, "node" + i);
+        }
+        heap.printHeap();
+        heap.deleteMin();
+        System.out.println(heap.totalCuts());
+        heap.printHeap();
+        heap.deleteMin();
+        System.out.println(heap.totalCuts());
+        heap.printHeap();
+        heap.deleteMin();
+        System.out.println(heap.totalCuts());
+
 
         heap.printHeap();
         System.out.println("Min: " + heap.findMin());
