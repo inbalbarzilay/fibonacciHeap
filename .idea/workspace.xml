@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3b03e44-4d7e-4a83-9d51-0779a4a2d31a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FibonacciHeapTest4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FibonacciHeapMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeapMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FibonacciHeap_inbalb4_shwartzman1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeap_inbalb4_shwartzman1.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$bonacciHeap_inbalb4_shwartzman1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/~WRL3112.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FibonacciHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +36,7 @@
     "Application.Experiment.executor": "Run",
     "Application.FibonacciHeapMain.executor": "Run",
     "Application.FibonacciHeapTest.executor": "Run",
+    "Application.Test.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.FibonacciHeapTest.executor": "Run",
     "JUnit.FibonacciHeapTest3.executor": "Run",
@@ -80,5 +77,21 @@
       <updated>1736326282679</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/FibonacciHeap.java</url>
+          <line>372</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/FibonacciHeap.java</url>
+          <line>398</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
