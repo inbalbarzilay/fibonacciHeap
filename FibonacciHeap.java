@@ -533,6 +533,10 @@ public class FibonacciHeap {
 		public String toString() {
 			return "(" + this.key + ", \"" + this.info + "\")";
 		}
+
+		public int getKey() {
+			return this.key;
+		}
 		// ######################## DELETE THIS ########################
 
 		/**
