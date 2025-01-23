@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Experiment {
     public static void main(String[] args) {
-        int i = 5;
+        int i = 3;
         int n = (int) Math.pow(3, i + 7) - 1;
         System.out.println("n: " + n + " n/2: "+ n/2);
         List<Integer> elems = new ArrayList<Integer>();

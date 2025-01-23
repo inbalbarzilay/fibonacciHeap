@@ -171,8 +171,6 @@ public class FibonacciHeapTest4 {
         heap.deleteMin();
         assertEquals(0, heap.totalCuts());  // Still no cuts
 
-        heap.printHeap();
-
         // Second deleteMin should trigger cuts
         heap.deleteMin();
         assertTrue(heap.totalCuts() > 0);

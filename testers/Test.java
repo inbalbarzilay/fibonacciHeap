@@ -394,7 +394,7 @@ public class Test {
             assert heap.findMin().key == i : "Minimum should be " + i;
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Basic operations test passed, test0");
     }
 
@@ -407,10 +407,10 @@ public class Test {
         }
 
         for (int i = 1; i <= 10; i++) {
-            assert heap.findMin().getKey() == i : "Minimum should be " + i;
+            assert heap.findMin().key == i : "Minimum should be " + i;
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Insert and delete test passed, test1");
     }
 
@@ -426,15 +426,15 @@ public class Test {
         heap.delete(nodes.get(4)); // Deleting node with key 5
 
         for (int i = 1; i <= 4; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
 
         for (int i = 6; i <= 10; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Middle node deletion test passed, test2");
     }
 
@@ -442,12 +442,12 @@ public class Test {
         System.out.println("Testing edge cases...");
         FibonacciHeap heap = new FibonacciHeap();
         if (heap.findMin() != null) throw new AssertionError("Minimum of empty heap should be null");
-        if (!heap.empty()) throw new AssertionError("Heap should be empty initially");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty initially");
 
         FibonacciHeap.HeapNode node = heap.insert(1, "key1");
         heap.delete(node);
         if (heap.findMin() != null) throw new AssertionError("Heap should be empty after deleting the only node");
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after deleting the only node");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after deleting the only node");
         System.out.println("✅ Edge cases test passed, test3");
     }
 
@@ -460,10 +460,10 @@ public class Test {
         }
 
         for (int i = 1; i <= 1000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Large input test passed, test4");
     }
 
@@ -475,10 +475,10 @@ public class Test {
         FibonacciHeap.HeapNode node2 = heap.insert(20, "key20");
 
         heap.decreaseKey(node2, 10);
-        if (heap.findMin().getKey() != 10) throw new AssertionError("Minimum should still be 10");
+        if (heap.findMin().key != 10) throw new AssertionError("Minimum should still be 10");
 
         heap.decreaseKey(node2, 5);
-        if (heap.findMin().getKey() != 5) throw new AssertionError("Minimum should now be 5");
+        if (heap.findMin().key != 5) throw new AssertionError("Minimum should now be 5");
         System.out.println("✅ DecreaseKey behavior test passed, test5");
     }
 
@@ -492,7 +492,7 @@ public class Test {
 
         heap.decreaseKey(node3, 15); // node3 becomes 15
         heap.decreaseKey(node2, 15);  // node2 becomes 5
-        if (heap.findMin().getKey() != 5) throw new AssertionError("Minimum should now be 5");
+        if (heap.findMin().key != 5) throw new AssertionError("Minimum should now be 5");
         System.out.println("✅ Cascading cuts test passed, test6");
     }
 
@@ -511,10 +511,10 @@ public class Test {
         }
 
         for (int i = 1; i <= 10000; i++) {
-            assert heap.findMin().getKey() == i : "Minimum should be " + i;
+            assert heap.findMin().key == i : "Minimum should be " + i;
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Large random insertions test passed, test7");
     }
 
@@ -531,7 +531,7 @@ public class Test {
             heap.deleteMin();
             if (heap.size() != 500 - i) throw new AssertionError("Heap size should be " + (500 - i));
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Heap size consistency test passed, test8");
     }
 
@@ -543,7 +543,7 @@ public class Test {
         if (heap.findMin() != node) throw new AssertionError("Minimum should be the only node");
 
         heap.delete(node);
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after deleting the only node");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after deleting the only node");
         System.out.println("✅ Single node edge case test passed, test9");
     }
 
@@ -561,14 +561,14 @@ public class Test {
         addKeys(heap, 1000);
         FibonacciHeap.HeapNode h = heap.insert(9999, "9999");
         heap.decreaseKey(h, 9999);
-        if (heap.findMin().getKey() != 0) throw new AssertionError("Minimum should be 0 after decreaseKey");
+        if (heap.findMin().key != 0) throw new AssertionError("Minimum should be 0 after decreaseKey");
 
         heap.deleteMin();
         for (int i = 1000; i < 2000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Test11 passed");
     }
 
@@ -580,15 +580,15 @@ public class Test {
         heap.decreaseKey(h, 4000);
 
         for (int i = 0; i < 2; i++) {
-            if (heap.findMin().getKey() != 1000) throw new AssertionError("Minimum should be 1000");
+            if (heap.findMin().key != 1000) throw new AssertionError("Minimum should be 1000");
             heap.deleteMin();
         }
 
         for (int i = 1001; i < 2000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Test12 passed");
     }
 
@@ -600,12 +600,12 @@ public class Test {
         heap.decreaseKey(h, 4000);
 
         for (int i = 1000; i < 2000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (heap.findMin().getKey() != 5000) throw new AssertionError("Minimum should now be 5000");
+        if (heap.findMin().key != 5000) throw new AssertionError("Minimum should now be 5000");
         heap.deleteMin();
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Test13 passed");
     }
 
@@ -618,17 +618,17 @@ public class Test {
         heap.decreaseKey(h, 4000);
 
         for (int i = 1000; i < 2000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (heap.findMin().getKey() != 5000) throw new AssertionError("Minimum should now be 5000");
+        if (heap.findMin().key != 5000) throw new AssertionError("Minimum should now be 5000");
         heap.deleteMin();
 
         for (int i = 7000; i < 8000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Test14 passed");
     }
 
@@ -644,14 +644,14 @@ public class Test {
 
         FibonacciHeap.HeapNode h = heap.insert(99999, "99999");
         heap.decreaseKey(h, 99999);
-        if (heap.findMin().getKey() != 0) throw new AssertionError("Minimum should be 0 after decreaseKey");
+        if (heap.findMin().key != 0) throw new AssertionError("Minimum should be 0 after decreaseKey");
         heap.deleteMin();
 
         for (int i = 1001; i < 10000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should be " + i);
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should be " + i);
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Test15 passed");
     }
 
@@ -857,7 +857,7 @@ public class Test {
         for (int i = 0; i < treeSize; i++) {
             iterationCuts = heap.totalCuts();
 
-            heap.decreaseKey(nodes.get(i), nodes.get(i).getKey() - (treeSize - i));
+            heap.decreaseKey(nodes.get(i), nodes.get(i).key - (treeSize - i));
 
             if (heap.totalCuts() - iterationCuts > 1) noCascading = false;
         }
@@ -957,7 +957,7 @@ public class Test {
         }
 
         for (int i = 0; i < size / 2; i++) {
-            if (heap.findMin().getKey() != i + 1) throw new AssertionError("Minimum should match");
+            if (heap.findMin().key != i + 1) throw new AssertionError("Minimum should match");
             heap.deleteMin();
         }
 
@@ -986,7 +986,7 @@ public class Test {
         }
 
         for (int i = 0; i < size / 2; i++) {
-            if (heap.findMin().getKey() != i + 1) throw new AssertionError("Minimum should match");
+            if (heap.findMin().key != i + 1) throw new AssertionError("Minimum should match");
             heap.deleteMin();
         }
         // Check the heap structure after deletions
@@ -1014,7 +1014,7 @@ public class Test {
         }
 
         for (int i = 0; i < size / 2; i++) {
-            if (heap.findMin().getKey() != i + 1) throw new AssertionError("Minimum should match");
+            if (heap.findMin().key != i + 1) throw new AssertionError("Minimum should match");
             heap.deleteMin();
         }
         // Check the heap structure after deletions
@@ -1043,10 +1043,10 @@ public class Test {
         }
 
         for (int i = 500; i < 1000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should match");
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should match");
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Test29 passed");
     }
 
@@ -1062,15 +1062,15 @@ public class Test {
         heap.delete(nodes.get(500)); // Deleting a middle node
 
         for (int i = 1; i < 500; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should match");
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should match");
             heap.deleteMin();
         }
 
         for (int i = 501; i <= 1000; i++) {
-            if (heap.findMin().getKey() != i) throw new AssertionError("Minimum should match");
+            if (heap.findMin().key != i) throw new AssertionError("Minimum should match");
             heap.deleteMin();
         }
-        if (!heap.empty()) throw new AssertionError("Heap should be empty after all deletions");
+        if (!(heap.size() == 0)) throw new AssertionError("Heap should be empty after all deletions");
         System.out.println("✅ Test30 passed");
     }
     private void addKeys(FibonacciHeap heap, int start) {
