@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Experiment {
     public static void main(String[] args) {
-        int i = 3;
+        int i = 5;
         int n = (int) Math.pow(3, i + 7) - 1;
         System.out.println("n: " + n + " n/2: "+ n/2);
         List<Integer> elems = new ArrayList<Integer>();
@@ -15,8 +15,6 @@ public class Experiment {
         for (int j = 0; j < n; j++) {
             elems.add(j);
         }
-
-
 
         double runTime = 0.0;
         double heapSize = 0.0;
@@ -27,15 +25,18 @@ public class Experiment {
         for (int j = 0; j < 20; j++) {
             Collections.shuffle(elems);
             FibonacciHeap heap = new FibonacciHeap();
+            FibonacciHeap.HeapNode[] nodes = new FibonacciHeap.HeapNode[n + 1];
 
             long startTime = System.currentTimeMillis();
 
             for (int elem : elems) {
-                heap.insert(elem, "info");
+                nodes[elem] = heap.insert(elem, "info");
             }
 
-            for (int k = 0; k < n / 2; k++) {
-                heap.deleteMin();
+            heap.deleteMin();
+
+            for (int k = n; k > 31; k--) {
+                heap.delete(nodes[k]);
             }
 
             long stopTime = System.currentTimeMillis();

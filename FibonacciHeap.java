@@ -17,6 +17,7 @@ public class FibonacciHeap {
 	public int size;
 	public int numTrees;
 	public boolean shouldConsolidate;
+	private static final double GOLDEN_RATIO = (1 + Math.sqrt(5))/2;
 	
 	/**
 	 *
@@ -392,7 +393,8 @@ public class FibonacciHeap {
 	 *
 	 */
 	private void successiveLinking() {
-		HeapNode[] roots = new HeapNode[this.size + 1];
+		int rootsLen = (int) Math.floor(Math.log(this.size) / Math.log(GOLDEN_RATIO)) + 1;
+		HeapNode[] roots = new HeapNode[rootsLen];
 		HeapNode currRoot = this.rootsListHead;
 
 		// perform successive linking on the heap's current trees

@@ -8,14 +8,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Experiment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Experiment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FibonacciHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FibonacciHeapMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeapMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FibonacciHeapTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FibonacciHeapTest2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FibonacciHeapTest3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FibonacciHeapTest4.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$bonacciHeap_inbalb4_shwartzman1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/~WRL0003.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FibonacciHeap_inbalb4_shwartzman1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/FibonacciHeap_inbalb4_shwartzman1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/FiboHeap_Heap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/FiboHeap_Tester.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/FibonacciHeapTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/FibonacciHeapTest2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/FibonacciHeapTest3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/FibonacciHeapTest4.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testers/Tester.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,10 +74,10 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <configuration name="FibonacciHeapTest2" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="proj2" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FibonacciHeapTest2" />
+      <option name="PACKAGE_NAME" value="testers" />
+      <option name="MAIN_CLASS_NAME" value="testers.FibonacciHeapTest2" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
